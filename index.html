@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CareerPath 🚀 | Multi-Screen Slide Experience for Class 10 & 12</title>
+  <meta name="description" content="Slide-by-slide multi-screen career guidance platform for students after Class 10 and Class 12.">
+
+  <!-- Cache Control to ensure browser always loads latest version -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <!-- Google Fonts: Fredoka & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <!-- Stylesheet with version tag -->
+  <link rel="stylesheet" href="style.css?v=slide_mode_2">
+</head>
+<body>
+
+  <!-- Floating Ambient Sparkles -->
+  <div class="ambient-decor" aria-hidden="true">
+    <span class="decor-bubble bubble-1">🚀</span>
+    <span class="decor-bubble bubble-2">✨</span>
+    <span class="decor-bubble bubble-3">💡</span>
+    <span class="decor-bubble bubble-4">🎓</span>
+  </div>
+
+  <!-- Persistent Header with Navigation & Progress Stepper -->
+  <header class="app-header" id="appHeader">
+    <div class="header-container">
+      
+      <!-- Brand Logo (Clicking goes to Screen 1) -->
+      <button class="brand-btn" id="headerHomeBtn" aria-label="Go to Welcome Page">
+        <span class="brand-emoji">🎯</span>
+        <div class="brand-titles">
+          <span class="brand-name">Career<span class="brand-accent">Path</span></span>
+          <span class="brand-sub">Slide Guidance 🚀</span>
+        </div>
+      </button>
+
+      <!-- Stepper / Screen Progress Bar -->
+      <div class="stepper-widget" id="stepperWidget">
+        <div class="stepper-meta">
+          <span class="stepper-step-text" id="stepperStepText">Step 1 of 5</span>
+          <span class="stepper-title-text" id="stepperTitleText">Welcome</span>
+        </div>
+        <div class="stepper-track">
+          <div class="stepper-fill" id="stepperFill" style="width: 20%;"></div>
+        </div>
+        <!-- Quick clickable breadcrumbs on desktop -->
+        <div class="stepper-dots" id="stepperDots">
+          <button class="step-dot active" data-screen="welcome" title="1. Welcome">1</button>
+          <button class="step-dot" data-screen="profile" title="2. Student Profile">2</button>
+          <button class="step-dot" data-screen="suggestions" title="3. Career Suggestions">3</button>
+          <button class="step-dot" data-screen="details" title="4. Career Details">4</button>
+          <button class="step-dot" data-screen="courses" title="5. Course Recommendations">5</button>
+        </div>
+      </div>
+
+      <!-- Action Items -->
+      <div class="header-actions">
+        <!-- Bookmark counter button -->
+        <button id="headerBookmarksBtn" class="action-circle-btn" title="Saved Careers" aria-label="View Saved Careers">
+          <span class="action-icon">⭐</span>
+          <span class="action-counter" id="savedCountBadge">0</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button id="themeToggleBtn" class="action-circle-btn" title="Toggle Light/Dark Theme" aria-label="Toggle Theme">
+          <span id="themeEmoji">🌙</span>
+        </button>
+
+        <!-- About Slide Button -->
+        <button id="openAboutBtn" class="btn btn-outline btn-sm about-nav-btn">
+          <span>ℹ️ About</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Viewport: Only ONE Screen Active At A Time -->
+  <main class="app-viewport" id="appViewport">
+
+    <!-- =======================================================================
+         SCREEN 1: WELCOME PAGE
+         ======================================================================= -->
+    <section class="screen-view active" id="screen-welcome" data-step="1" data-name="Welcome">
+      <div class="screen-content welcome-screen-grid">
+        
+        <div class="welcome-hero-text">
+          <div class="hero-chip">
+            <span>🎬 SLIDE 1 OF 5 : WELCOME</span>
+          </div>
+
+          <h1 class="welcome-title">
+            Discover Your Interests, <br>
+            <span class="gradient-text">Build Your Future!</span> 🚀
+          </h1>
+
+          <p class="welcome-description">
+            ఇది సింగిల్ పేజీ వెబ్‌సైట్ కాదు! ప్రెజెంటేషన్ లాగా స్టెప్-బై-స్టెప్ స్లైడ్లలో మీ కెరీర్‌ని ఎంచుకోండి. <br>
+            <strong>Slide 2</strong> కి వెళ్లడానికి కింద ఉన్న <strong>"Get Started"</strong> లేదా <strong>"Next"</strong> బటన్ నొక్కండి! 👇
+          </p>
+
+          <div class="welcome-cta-box">
+            <button class="btn btn-primary btn-lg pulse-glow" id="welcomeStartBtn">
+              <span>🚀 Get Started (Go to Slide 2) 👉</span>
+            </button>
+            <button class="btn btn-secondary btn-lg" id="welcomeAboutBtn">
+              <span>ℹ️ Why CareerPath?</span>
+            </button>
+          </div>
+
+          <div class="welcome-badges-row">
+            <span class="badge-item">🎬 Slide 1: Welcome</span>
+            <span class="badge-item">📝 Slide 2: Profile & Class</span>
+            <span class="badge-item">🎯 Slide 3: Career Matches</span>
+            <span class="badge-item">🗺️ Slide 4: Career Details</span>
+            <span class="badge-item">🎓 Slide 5: Course Roadmap</span>
+          </div>
+        </div>
+
+        <div class="welcome-visual-card">
+          <div class="presentation-preview-box">
+            <div class="preview-badge">Presentation Mode 🎬</div>
+            <div class="preview-visual-circle">
+              <span class="preview-big-emoji">🧭</span>
+            </div>
+            <h3>5 Slide Interactive Experience</h3>
+            <div class="preview-steps-list">
+              <div class="preview-step-pill">1️⃣ Welcome Page (You are here)</div>
+              <div class="preview-step-pill">2️⃣ Student Profile & Class 10/12</div>
+              <div class="preview-step-pill">3️⃣ Smart Career Recommendations</div>
+              <div class="preview-step-pill">4️⃣ Deep-Dive Career Details</div>
+              <div class="preview-step-pill">5️⃣ Course Recommendations & Next Steps</div>
+            </div>
+            <p class="preview-note">⚡ Click Next below to slide forward!</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Screen Bottom Bar -->
+      <div class="screen-nav-bar">
+        <div class="nav-bar-left">
+          <span class="nav-hint">👉 Click "Next" to slide to Step 2 (Student Profile)</span>
+        </div>
+        <div class="nav-bar-right">
+          <button class="btn btn-primary btn-lg" id="welcomeNextBtn">
+            <span>Next: Slide 2 (Student Profile) 👉</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SCREEN 2: STUDENT PROFILE PAGE
+         ======================================================================= -->
+    <section class="screen-view" id="screen-profile" data-step="2" data-name="Student Profile">
+      <div class="screen-content profile-screen-layout">
+        
+        <div class="screen-heading-center">
+          <span class="screen-subtitle-pill">🎬 SLIDE 2 OF 5</span>
+          <h2 class="screen-main-title">Build Your Student Profile 📝</h2>
+          <p class="screen-main-desc">
+            మీ క్లాస్, మీకు ఇష్టమైన సబ్జెక్టులు మరియు మీ సూపర్ పవర్స్ సెలెక్ట్ చేసుకోండి. దీని ఆధారంగా బెస్ట్ కెరీర్లను రికమండ్ చేస్తాం!
+          </p>
+        </div>
+
+        <div class="profile-form-grid">
+          
+          <!-- 1. Select Class (10th or 12th) -->
+          <div class="profile-block">
+            <label class="block-label">
+              <span class="label-number">1</span>
+              <span>మీరు ప్రస్తుతం ఏ క్లాస్? (Select Your Class) <span class="required">*</span></span>
+            </label>
+            <div class="class-picker-grid">
+              <div class="class-card active" data-class="10" tabindex="0" role="button">
+                <span class="class-emoji">🎒</span>
+                <div class="class-details">
+                  <h4>Class 10th Student</h4>
+                  <p>10th పాసయ్యాను, 11th ఇంటర్ లేదా డిప్లొమా ఏ గ్రూప్ తీసుకోవాలో చూడాలి.</p>
+                </div>
+                <span class="class-check-circle">✔</span>
+              </div>
+
+              <div class="class-card" data-class="12" tabindex="0" role="button">
+                <span class="class-emoji">🎓</span>
+                <div class="class-details">
+                  <h4>Class 12th Student</h4>
+                  <p>12th చదువుతున్నాను, కాలేజ్ డిగ్రీలు, ఎంట్రన్స్ ఎగ్జామ్స్ చూడాలి.</p>
+                </div>
+                <span class="class-check-circle">✔</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Select Core Interests -->
+          <div class="profile-block">
+            <label class="block-label">
+              <span class="label-number">2</span>
+              <span>మీకు ఆసక్తి ఉన్న రంగాలు? (Select Your Interests) <span class="required">*</span></span>
+            </label>
+            <p class="block-helper">ఒకటి లేదా అంతకంటే ఎక్కువ సెలెక్ట్ చేసుకోవచ్చు 👇</p>
+            <div class="multi-pills-grid" id="interestsPillsContainer">
+              <button class="multi-pill selected" data-value="Technology">
+                <span class="pill-icon">💻</span>
+                <span>Technology, AI & Gaming</span>
+              </button>
+              <button class="multi-pill" data-value="Science">
+                <span class="pill-icon">🔬</span>
+                <span>Space & Science Research</span>
+              </button>
+              <button class="multi-pill" data-value="Business">
+                <span class="pill-icon">💰</span>
+                <span>Business, Finance & Startups</span>
+              </button>
+              <button class="multi-pill" data-value="Arts">
+                <span class="pill-icon">🎨</span>
+                <span>Arts, UI/UX & Creative Media</span>
+              </button>
+              <button class="multi-pill" data-value="Healthcare">
+                <span class="pill-icon">🩺</span>
+                <span>Healthcare, Medicine & Biotech</span>
+              </button>
+              <button class="multi-pill" data-value="Teaching">
+                <span class="pill-icon">📚</span>
+                <span>Teaching, Mentoring & EdTech</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 3. Favourite Subjects -->
+          <div class="profile-block">
+            <label class="block-label">
+              <span class="label-number">3</span>
+              <span>మీకు ఇష్టమైన సబ్జెక్టులు? (Favourite Subjects)</span>
+            </label>
+            <div class="multi-pills-grid" id="subjectsPillsContainer">
+              <button class="multi-pill selected" data-value="Computers">💻 Computers & Coding</button>
+              <button class="multi-pill selected" data-value="Maths">📐 Mathematics & Logic</button>
+              <button class="multi-pill" data-value="Physics">⚡ Physics & Mechanics</button>
+              <button class="multi-pill" data-value="Biology">🧬 Biology & Life Science</button>
+              <button class="multi-pill" data-value="Chemistry">🧪 Chemistry & Lab</button>
+              <button class="multi-pill" data-value="Commerce">📊 Commerce & Accounts</button>
+              <button class="multi-pill" data-value="Social">🏛️ Social Studies & Civics</button>
+              <button class="multi-pill" data-value="Drawing">🎨 Drawing & Visual Arts</button>
+              <button class="multi-pill" data-value="English">📖 English & Storytelling</button>
+            </div>
+          </div>
+
+          <!-- 4. Key Skills / Strengths -->
+          <div class="profile-block">
+            <label class="block-label">
+              <span class="label-number">4</span>
+              <span>మీ సూపర్ పవర్స్ / బెస్ట్ స్కిల్స్? (Key Strengths)</span>
+            </label>
+            <div class="multi-pills-grid" id="skillsPillsContainer">
+              <button class="multi-pill selected" data-value="Problem Solving">🧩 Problem Solving</button>
+              <button class="multi-pill selected" data-value="Creativity">✨ Creativity & Design</button>
+              <button class="multi-pill" data-value="Public Speaking">🗣️ Public Speaking & Debate</button>
+              <button class="multi-pill" data-value="Logical Thinking">💡 Logical Thinking</button>
+              <button class="multi-pill" data-value="Helping People">💖 Helping People & Empathy</button>
+              <button class="multi-pill" data-value="Management">📋 Organizing & Management</button>
+              <button class="multi-pill" data-value="Coding">💻 Coding & Tech Tools</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Screen Bottom Bar -->
+      <div class="screen-nav-bar">
+        <div class="nav-bar-left">
+          <button class="btn btn-secondary" id="profileBackBtn">
+            <span>👈 Back (Slide 1)</span>
+          </button>
+          <button class="btn btn-outline" id="profileHomeBtn">
+            <span>🏠 Home</span>
+          </button>
+        </div>
+        <div class="nav-bar-right">
+          <button class="btn btn-primary btn-lg" id="profileNextBtn">
+            <span>Next: Slide 3 (Career Matches) 🚀</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SCREEN 3: CAREER SUGGESTIONS PAGE
+         ======================================================================= -->
+    <section class="screen-view" id="screen-suggestions" data-step="3" data-name="Career Suggestions">
+      <div class="screen-content suggestions-screen-layout">
+        
+        <div class="screen-heading-center">
+          <span class="screen-subtitle-pill">🎬 SLIDE 3 OF 5</span>
+          <h2 class="screen-main-title">Your Tailored Career Matches 🎯</h2>
+          <p class="screen-main-desc" id="suggestionsSummaryText">
+            మీ ప్రొఫైల్ ఆధారంగా బెస్ట్ కెరీర్లు కింద ఇవ్వబడ్డాయి. క్లిక్ చేసి పూర్తి వివరాలు చూడండి!
+          </p>
+        </div>
+
+        <!-- Filter & Search Bar -->
+        <div class="suggestions-filter-bar">
+          <div class="search-input-wrap">
+            <span class="search-emoji">🔍</span>
+            <input type="text" id="suggestionsSearchInput" placeholder="Search by career title, skill, or course...">
+            <button id="clearSuggestionsSearchBtn" class="clear-search-btn">✖</button>
+          </div>
+
+          <div class="category-filter-chips" id="suggestionsCategoryPills">
+            <button class="cat-filter-chip active" data-cat="all">🌈 All Matches</button>
+            <button class="cat-filter-chip" data-cat="Technology">💻 Tech & Games</button>
+            <button class="cat-filter-chip" data-cat="Science">🔬 Space & Science</button>
+            <button class="cat-filter-chip" data-cat="Business">💰 Business & Finance</button>
+            <button class="cat-filter-chip" data-cat="Arts">🎨 Arts & UI/UX</button>
+            <button class="cat-filter-chip" data-cat="Healthcare">🩺 Health & Care</button>
+            <button class="cat-filter-chip" data-cat="Teaching">📚 Teaching & EdTech</button>
+          </div>
+        </div>
+
+        <!-- Career Cards Grid -->
+        <div class="career-cards-grid" id="suggestionsCardsGrid">
+          <!-- Dynamically populated -->
+        </div>
+
+        <!-- Empty state fallback -->
+        <div class="empty-suggestions hidden" id="emptySuggestionsState">
+          <div class="empty-emoji">🙈</div>
+          <h3>No matching careers found</h3>
+          <p>వేరే కేటగిరీ సెలెక్ట్ చేయండి లేదా సెర్చ్ క్లియర్ చేయండి.</p>
+          <button class="btn btn-secondary btn-sm" id="resetSuggestionsFilterBtn">Show All Matches</button>
+        </div>
+
+      </div>
+
+      <!-- Screen Bottom Bar -->
+      <div class="screen-nav-bar">
+        <div class="nav-bar-left">
+          <button class="btn btn-secondary" id="suggestionsBackBtn">
+            <span>👈 Back (Slide 2: Profile)</span>
+          </button>
+          <button class="btn btn-outline" id="suggestionsHomeBtn">
+            <span>🏠 Home</span>
+          </button>
+        </div>
+        <div class="nav-bar-right">
+          <button class="btn btn-primary btn-lg" id="suggestionsNextBtn">
+            <span>Next: Slide 4 (Career Details) 👉</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SCREEN 4: CAREER DETAILS PAGE
+         ======================================================================= -->
+    <section class="screen-view" id="screen-details" data-step="4" data-name="Career Details">
+      <div class="screen-content details-screen-layout">
+        
+        <div class="details-top-header">
+          <div class="details-badge-group">
+            <span class="detail-cat-badge" id="detailsCatBadge">💻 Technology</span>
+            <span class="detail-stage-badge" id="detailsStageBadge">🎒 10th & 🎓 12th</span>
+            <span class="detail-growth-badge" id="detailsGrowthBadge">🔥 High Demand</span>
+            <span class="detail-match-badge" id="detailsMatchBadge">⭐ 98% Profile Match</span>
+          </div>
+
+          <div class="details-title-row">
+            <div>
+              <h2 class="details-title" id="detailsCareerTitle">Software & App Developer</h2>
+              <p class="details-tagline" id="detailsCareerDesc">Build mobile apps, websites, and games using coding.</p>
+            </div>
+            <div class="details-actions">
+              <button class="btn btn-secondary btn-sm" id="detailsBookmarkBtn">
+                <span id="detailsBookmarkIcon">⭐</span>
+                <span id="detailsBookmarkText">Save Career</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ELI5 Meters (Salary, Brain, Math) -->
+        <div class="details-meters-grid">
+          <div class="meter-box">
+            <span class="meter-icon">💰</span>
+            <div>
+              <small>Expected Salary</small>
+              <strong id="detailsSalaryMeter">💸💸💸 High (₹8L - ₹28L+)</strong>
+            </div>
+          </div>
+
+          <div class="meter-box">
+            <span class="meter-icon">🧠</span>
+            <div>
+              <small>Brain Effort</small>
+              <strong id="detailsEffortMeter">🧠🧠 Logic & Practice</strong>
+            </div>
+          </div>
+
+          <div class="meter-box">
+            <span class="meter-icon">📐</span>
+            <div>
+              <small>Hard Math Needed?</small>
+              <strong id="detailsMathMeter">📐 Basic Logic (No Calculus!)</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- What they actually do all day (Plain Words) -->
+        <div class="details-block callout-block">
+          <h3>🦄 What do you actually do in this job?</h3>
+          <p id="detailsWhatTheyDo">లాప్‌టాప్‌లో కూర్చుని కోడింగ్ రాస్తూ కొత్త మొబైల్ యాప్స్ లేదా వీడియో గేమ్స్ తయారు చేస్తారు!</p>
+        </div>
+
+        <!-- Step-by-Step Educational Pathway -->
+        <div class="details-block">
+          <h3>🗺️ Step-by-Step Pathway (From School to Job)</h3>
+          <div class="details-timeline" id="detailsTimelineContainer">
+            <!-- Timeline injected dynamically -->
+          </div>
+        </div>
+
+        <!-- Required Skills & Tools -->
+        <div class="details-block">
+          <h3>🛠️ Required Skills & Cool Tools</h3>
+          <div class="skills-chips-list" id="detailsSkillsContainer">
+            <!-- Chips injected dynamically -->
+          </div>
+        </div>
+
+        <!-- Qualifications & Exams Side by Side -->
+        <div class="details-grid-2">
+          <div class="details-box">
+            <h4>🎓 Required Qualifications & Degrees</h4>
+            <ul class="checklist-items" id="detailsCoursesList">
+              <!-- Courses -->
+            </ul>
+          </div>
+
+          <div class="details-box">
+            <h4>🎯 Key Entrance Exams</h4>
+            <ul class="checklist-items" id="detailsExamsList">
+              <!-- Exams -->
+            </ul>
+          </div>
+        </div>
+
+        <!-- Why this career is awesome -->
+        <div class="details-block scope-block">
+          <h3>🌟 Why is this career exciting?</h3>
+          <p id="detailsScopeText">ప్రపంచం మొత్తం ఫోన్ల మీదే నడుస్తోంది. మంచి కోడర్లకు ప్రపంచవ్యాప్తంగా ఎప్పుడూ భారీ డిమాండ్ ఉంటుంది!</p>
+        </div>
+
+      </div>
+
+      <!-- Screen Bottom Bar -->
+      <div class="screen-nav-bar">
+        <div class="nav-bar-left">
+          <button class="btn btn-secondary" id="detailsBackBtn">
+            <span>👈 Back (Slide 3: Suggestions)</span>
+          </button>
+          <button class="btn btn-outline" id="detailsHomeBtn">
+            <span>🏠 Home</span>
+          </button>
+        </div>
+        <div class="nav-bar-right">
+          <button class="btn btn-primary btn-lg" id="detailsNextBtn">
+            <span>Next: Slide 5 (Course Recommendations) 🎓</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SCREEN 5: COURSE RECOMMENDATIONS & NEXT STEPS PAGE
+         ======================================================================= -->
+    <section class="screen-view" id="screen-courses" data-step="5" data-name="Course Recommendations">
+      <div class="screen-content courses-screen-layout">
+        
+        <div class="screen-heading-center">
+          <span class="screen-subtitle-pill">🎬 SLIDE 5 OF 5</span>
+          <h2 class="screen-main-title">Recommended Courses & Immediate Next Steps 🧭</h2>
+          <p class="screen-main-desc">
+            మీ విద్యార్హత (Class 10 vs 12) ఆధారంగా ఏ గ్రూపులు, డిగ్రీలు మరియు ఎంట్రన్స్ ఎగ్జామ్స్ తీసుకోవాలో స్పష్టమైన గైడ్.
+          </p>
+        </div>
+
+        <!-- Stage Switcher Tabs (Tailored for 10th and 12th) -->
+        <div class="courses-stage-toggle">
+          <button class="stage-tab-btn active" id="courses10TabBtn" data-target="courses10Content">
+            <span>🎒 After Class 10 (Stream & Diplomas)</span>
+          </button>
+          <button class="stage-tab-btn" id="courses12TabBtn" data-target="courses12Content">
+            <span>🎓 After Class 12 (Degrees & Exams)</span>
+          </button>
+        </div>
+
+        <!-- Class 10th Pathways Container -->
+        <div class="courses-tab-content active" id="courses10Content">
+          <div class="course-cards-grid">
+            
+            <div class="course-card science-card">
+              <div class="course-card-header">
+                <span class="course-emoji">🧪</span>
+                <div>
+                  <h4>Science Stream (PCM / PCB)</h4>
+                  <small>Inter / +2 Intermediate</small>
+                </div>
+              </div>
+              <p>బెస్ట్ ఫర్: ఇంజనీరింగ్, సాఫ్ట్‌వేర్, డాక్టర్, సైంటిస్ట్, స్పేస్ రీసెర్చ్.</p>
+              <ul class="course-bullets">
+                <li><strong>PCM (Maths):</strong> B.Tech, BCA, ఆర్కిటెక్చర్, నేవీ & ఎయిర్ ఫోర్స్.</li>
+                <li><strong>PCB (Bio):</strong> MBBS, BDS, B.Pharm, బయోటెక్నాలజీ, నర్సింగ్.</li>
+                <li><strong>PCMB:</strong> రెండు రంగాలకూ ఎలిజిబుల్.</li>
+              </ul>
+              <div class="course-footer-badge">🎯 Top Exams: JEE, NEET, CETs</div>
+            </div>
+
+            <div class="course-card commerce-card">
+              <div class="course-card-header">
+                <span class="course-emoji">💼</span>
+                <div>
+                  <h4>Commerce Stream (MEC / CEC)</h4>
+                  <small>Accounts & Economics</small>
+                </div>
+              </div>
+              <p>బెస్ట్ ఫర్: చార్టర్డ్ అకౌంటెంట్ (CA), బిజినెస్ మేనేజ్మెంట్, బ్యాంకింగ్, స్టాక్ మార్కెట్.</p>
+              <ul class="course-bullets">
+                <li><strong>MEC (With Maths):</strong> CA, ఇన్వెస్ట్‌మెంట్ బ్యాంకర్, డేటా అనలిస్ట్, B.Com Hons.</li>
+                <li><strong>CEC (Without Maths):</strong> BBA మేనేజ్‌మెంట్, కార్పొరేట్ లా, మార్కెటింగ్.</li>
+              </ul>
+              <div class="course-footer-badge">🎯 Top Exams: CA Foundation, IPMAT</div>
+            </div>
+
+            <div class="course-card arts-card">
+              <div class="course-card-header">
+                <span class="course-emoji">🎭</span>
+                <div>
+                  <h4>Arts & Humanities (HEC)</h4>
+                  <small>Creative & Social Minds</small>
+                </div>
+              </div>
+              <p>బెస్ట్ ఫర్: సివిల్ సర్వీసెస్ (IAS/IPS), సైకాలజీ, లా (Law), UI/UX డిజైన్, జర్నలిజం.</p>
+              <ul class="course-bullets">
+                <li><strong>కీలక సబ్జెక్టులు:</strong> చరిత్ర, సైకాలజీ, పొలిటికల్ సైన్స్, సోషియాలజీ.</li>
+                <li><strong>లాభం:</strong> నో సైన్స్ స్ట్రెస్! క్రియేటివ్ ఫ్రీడమ్ మరియు పబ్లిక్ సర్వీస్ లీడర్‌షిప్.</li>
+              </ul>
+              <div class="course-footer-badge">🎯 Top Exams: CLAT, CUET, NID</div>
+            </div>
+
+            <div class="course-card poly-card">
+              <div class="course-card-header">
+                <span class="course-emoji">🛠️</span>
+                <div>
+                  <h4>Polytechnic Diploma (3 Years)</h4>
+                  <small>Direct Hands-on Technical</small>
+                </div>
+              </div>
+              <p>బెస్ట్ ఫర్: 10th తర్వాతనే ప్రాక్టికల్ కంప్యూటర్ లేదా మెషిన్ కోర్సు నేర్చుకోవాలనుకునే వారికి.</p>
+              <ul class="course-bullets">
+                <li><strong>సూపర్ షార్ట్‌కట్:</strong> 3 ఏళ్ల డిప్లొమా పూర్తవగానే B.Tech 2nd Year లో డైరెక్ట్ సీట్ (Lateral Entry)!</li>
+                <li><strong>స్ట్రీమ్స్:</strong> Computer Science, Mechanical, Civil, Electrical.</li>
+              </ul>
+              <div class="course-footer-badge">🎯 Top Exam: POLYCET</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Class 12th Pathways Container -->
+        <div class="courses-tab-content" id="courses12Content">
+          <div class="course-cards-grid">
+            
+            <div class="course-card science-card">
+              <div class="course-card-header">
+                <span class="course-emoji">💻</span>
+                <div>
+                  <h4>Engineering & Tech Degrees</h4>
+                  <small>4-Year Professional B.Tech / BCA</small>
+                </div>
+              </div>
+              <p>సాఫ్ట్‌వేర్ ఇంజనీర్, AI స్పెషలిస్ట్, డేటా సైంటిస్ట్, సైబర్ సెక్యూరిటీ అవ్వడానికి డిగ్రీలు.</p>
+              <ul class="course-bullets">
+                <li><strong>Degrees:</strong> B.Tech CS, BCA, B.Sc Computer Science / IT.</li>
+                <li><strong>Exams:</strong> JEE Main, State CETs, BITSAT, CUET.</li>
+              </ul>
+            </div>
+
+            <div class="course-card health-card">
+              <div class="course-card-header">
+                <span class="course-emoji">🩺</span>
+                <div>
+                  <h4>Medical & Life Science Degrees</h4>
+                  <small>MBBS, BDS, Pharma & Biotech</small>
+                </div>
+              </div>
+              <p>వైద్యం, రోగుల సంరక్షణ, ల్యాబ్ పరిశోధనలు మరియు ఫార్మసీ రంగాల డిగ్రీలు.</p>
+              <ul class="course-bullets">
+                <li><strong>Degrees:</strong> MBBS, BDS, B.Pharm, BPT (Physiotherapy), B.Sc Biotech.</li>
+                <li><strong>Exams:</strong> NEET-UG, State Pharmacy CETs.</li>
+              </ul>
+            </div>
+
+            <div class="course-card commerce-card">
+              <div class="course-card-header">
+                <span class="course-emoji">📈</span>
+                <div>
+                  <h4>Business, Management & Law</h4>
+                  <small>BBA, CA, B.Com & Integrated Law</small>
+                </div>
+              </div>
+              <p>కార్పొరేట్ ఉద్యోగాలు, కంపెనీ మేనేజ్‌మెంట్, లాయర్, ఇన్వెస్ట్‌మెంట్ బ్యాంకింగ్.</p>
+              <ul class="course-bullets">
+                <li><strong>Degrees:</strong> BBA, B.Com Hons, 5-Year Integrated BA LLB, CA Inter.</li>
+                <li><strong>Exams:</strong> CLAT, CA Foundation, IPMAT (IIMs).</li>
+              </ul>
+            </div>
+
+            <div class="course-card arts-card">
+              <div class="course-card-header">
+                <span class="course-emoji">🎨</span>
+                <div>
+                  <h4>Creative Design, Media & Teaching</h4>
+                  <small>B.Des, BJMC, 4-Yr Integrated B.Ed</small>
+                </div>
+              </div>
+              <p>మొబైల్ యాప్ డిజైనింగ్, యానిమేషన్, సినిమా ఎడిటింగ్, జర్నలిజం, స్కూల్ టీచింగ్.</p>
+              <ul class="course-bullets">
+                <li><strong>Degrees:</strong> B.Des (UI/UX), B.Sc Animation, BJMC, 4-Year B.Ed (ITEP).</li>
+                <li><strong>Exams:</strong> UCEED, NID DAT, NCET.</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Immediate 3 Next Steps Checklist -->
+        <div class="action-checklist-box">
+          <h3>✅ మీ నెక్స్ట్ 3 యాక్షన్ స్టెప్స్ (What to do this week):</h3>
+          <div class="checklist-steps-grid">
+            <div class="check-step">
+              <span class="step-num-circle">1</span>
+              <div>
+                <strong>Explore 2 Careers Deeply</strong>
+                <p>మా Career Suggestions లో నచ్చిన 2 కెరీర్లను సేవ్ చేసుకుని సిలబస్ గమనించండి.</p>
+              </div>
+            </div>
+
+            <div class="check-step">
+              <span class="step-num-circle">2</span>
+              <div>
+                <strong>Check Free YouTube Demos</strong>
+                <p>ఆ ఫీల్డ్‌లో ఒక చిన్న బేసిక్ ట్యుటోరియల్ (Coding, Figma Design, Stock Basics) చూడండి.</p>
+              </div>
+            </div>
+
+            <div class="check-step">
+              <span class="step-num-circle">3</span>
+              <div>
+                <strong>Talk to Parents or Mentor</strong>
+                <p>మీ ఆసక్తులను కుటుంబంతో పంచుకోండి. డౌట్స్ ఉంటే మా About పేజీ ద్వారా మెంటార్‌ను అడగండి!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Screen Bottom Bar -->
+      <div class="screen-nav-bar">
+        <div class="nav-bar-left">
+          <button class="btn btn-secondary" id="coursesBackBtn">
+            <span>👈 Back (Slide 4: Details)</span>
+          </button>
+          <button class="btn btn-outline" id="coursesHomeBtn">
+            <span>🏠 Home</span>
+          </button>
+        </div>
+        <div class="nav-bar-right">
+          <button class="btn btn-party btn-lg" id="coursesFinishBtn">
+            <span>🎉 Learn About CareerPath & Mentors 👉</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         SCREEN 6: ABOUT & PURPOSE PAGE
+         ======================================================================= -->
+    <section class="screen-view" id="screen-about" data-step="6" data-name="About CareerPath">
+      <div class="screen-content about-screen-layout">
+        
+        <div class="screen-heading-center">
+          <span class="screen-subtitle-pill">About Us & Student Help ℹ️</span>
+          <h2 class="screen-main-title">Why We Built CareerPath 💖</h2>
+          <p class="screen-main-desc">
+            లక్షల మంది విద్యార్థులు బోర్డ్ పరీక్షల తర్వాత తప్పుడు గ్రూప్ లేదా అపోహలతో ఇబ్బంది పడుతున్నారు. వారికి ఉచితంగా, స్పష్టమైన గైడెన్స్ ఇవ్వడమే మా లక్ష్యం!
+          </p>
+        </div>
+
+        <!-- 3 Mission Pillars -->
+        <div class="about-pillars-grid">
+          <div class="pillar-card">
+            <span class="pillar-emoji">🎁</span>
+            <h3>100% ఉచితం (Zero Fees)</h3>
+            <p>ఎలాంటి ఖరీదైన కౌన్సెలింగ్ ఫీజులు లేకుండా ప్రతీ విద్యార్థికి సమానమైన మార్గదర్శకత్వం.</p>
+          </div>
+
+          <div class="pillar-card">
+            <span class="pillar-emoji">🧩</span>
+            <h3>నో కన్‌ఫ్యూజన్ (ELI5 Simple)</h3>
+            <p>బోర్ కొట్టే చదువుల పదాలు లేకుండా, ఎమోజీలు మరియు శాలరీ మీటర్లతో సరదాగా అర్థమయ్యేలా!</p>
+          </div>
+
+          <div class="pillar-card">
+            <span class="pillar-emoji">🚀</span>
+            <h3>ఫ్యూచర్ ప్రూఫ్ స్కిల్స్</h3>
+            <p>కేవలం పుస్తకాల మార్కులు మాత్రమే కాకుండా, కంపెనీలు కోరే అసలైన నైపుణ్యాల రోడ్‌మ్యాప్.</p>
+          </div>
+        </div>
+
+        <!-- Myth Busters Recap -->
+        <div class="about-myths-box">
+          <h3>💥 Quick Reality Check (Remember These!)</h3>
+          <div class="quick-myths-grid">
+            <div class="q-myth">
+              <strong>❌ "సైన్స్ తీసుకుంటేనే లైఫ్ ఉంటుంది!"</strong>
+              <p>✅ కాదు! ఆర్ట్స్ & కామర్స్ స్టూడెంట్స్ పెద్ద కంపెనీలకు CEOs మరియు టాప్ లాయర్లుగా ఉన్నారు.</p>
+            </div>
+            <div class="q-myth">
+              <strong>❌ "నాకు మ్యాథ్స్ రాదు, కాబట్టి టెక్ జాబ్స్ రావు!"</strong>
+              <p>✅ కాదు! UI/UX డిజైన్, వెబ్ ఫ్రంట్‌ఎండ్‌లో లెక్కలు అవసరం లేకుండానే లక్షల్లో శాలరీ పొందవచ్చు.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Student Contact / Query Form -->
+        <div class="about-contact-card">
+          <div class="contact-header">
+            <h3>💬 Still Confused? Ask a Mentor!</h3>
+            <p>మీ వివరాలు పంపండి, మా కెరీర్ గైడెన్స్ మెంటార్లు మీకు ఉచితంగా సలహా ఇస్తారు.</p>
+          </div>
+
+          <form id="mentorContactForm" novalidate>
+            <div class="form-row-2">
+              <div class="form-field">
+                <label for="mentorName">Your Name *</label>
+                <input type="text" id="mentorName" placeholder="Rahul లేదా Sneha" required>
+                <span class="form-err" id="mentorNameErr"></span>
+              </div>
+              <div class="form-field">
+                <label for="mentorEmail">Email Address *</label>
+                <input type="email" id="mentorEmail" placeholder="you@gmail.com" required>
+                <span class="form-err" id="mentorEmailErr"></span>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="mentorClass">Your Class *</label>
+              <select id="mentorClass" required>
+                <option value="">Select your class</option>
+                <option value="10">Class 10 Student</option>
+                <option value="12">Class 12 Student</option>
+                <option value="Parent">Parent / Guardian</option>
+              </select>
+              <span class="form-err" id="mentorClassErr"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="mentorMessage">Your Doubt / Question *</label>
+              <textarea id="mentorMessage" rows="3" placeholder="మీ సందేహం లేదా ఏ గ్రూప్ తీసుకోవాలో రాయండి..." required></textarea>
+              <span class="form-err" id="mentorMsgErr"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">
+              <span>🚀 Submit Question</span>
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Screen Bottom Bar -->
+      <div class="screen-nav-bar">
+        <div class="nav-bar-left">
+          <button class="btn btn-secondary" id="aboutBackBtn">
+            <span>👈 Back (Course Recommendations)</span>
+          </button>
+          <button class="btn btn-outline" id="aboutHomeBtn">
+            <span>🏠 Home</span>
+          </button>
+        </div>
+        <div class="nav-bar-right">
+          <button class="btn btn-bounce" id="aboutRestartBtn">
+            <span>🔄 Start From Beginning!</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- JavaScript with cache bust -->
+  <script src="script.js?v=slide_mode_2"></script>
+</body>
+</html>
